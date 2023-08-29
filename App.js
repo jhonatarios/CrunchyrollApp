@@ -4,7 +4,7 @@ import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+import { StatusBar } from 'expo-status-bar';
 
 import Home from './src/screens/Home';
 import MyList from './src/screens/MyList';
@@ -17,6 +17,8 @@ const Stack = createNativeStackNavigator();
 
 function MainTabs() {
   return (
+    <>
+    <StatusBar barStyle="dark" />
       <Tab.Navigator
       style={{ backgroundColor: 'green' }}
       screenOptions={({ route }) => ({
@@ -63,6 +65,7 @@ function MainTabs() {
         <Tab.Screen name="Simulcasts" component={Simulcasts} />
         <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
+      </>
   );
 }
 

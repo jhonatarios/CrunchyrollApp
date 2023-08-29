@@ -1,68 +1,88 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { Component } from 'react';
+import { View, ScrollView, StyleSheet, Image, TouchableOpacity, Animated } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const globalStyle = require("../../assets/js/globalStyle.js");
+import TopPicks from '../../components/TopPicks';
+import AnimeRecomendation from '../../components/AnimeRecomendation';
+
+// const animes = [
+//   {
+//       id: 1,
+//       name: "",
+//       type: "",
+//   },
+// ]
+
+class ImageLoader extends Component {
+  state = {
+    opacity: new Animated.Value(0),
+  }
+
+  onLoad = () => {
+    Animated.timing(this.state.opacity, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  render() {
+    return (
+      <Animated.Image
+        onLoad={this.onLoad}
+        {...this.props}
+        style={[
+          {
+            opacity: this.state.opacity,
+            transform: [
+              {
+                scale: this.state.opacity.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.85, 1],
+                })
+              },
+            ],
+          },
+          this.props.style,
+        ]}
+      />
+    );
+  }
+}
 
 export default function Home() {
  return (
-    
-    <View style={style.container}>
+    <><View style={style.topBar}>
+     <Image
+       source={require('../../assets/img/logo/crunchyroll_logo.png')}
+       style={style.logo}
+       resizeMode="contain"
+     ></Image>
+     <TouchableOpacity>
+       <Ionicons name="search" style={style.searchButton} />
+     </TouchableOpacity>
+   </View><ScrollView style={style.container}>
+      <View>
+       <ImageLoader
+         source={require('../../assets/img/animes/mushoku-tensei-jobless-reincarnation.jpg')}
+         resizeMode="cover"
+         style={style.imageBackgroundAR} />
+      </View>
+       <View style={style.animeRecomendation}>
+         <AnimeRecomendation />
+       </View>
+       
+       <View style={style.topPicksForYou}>
+         <TopPicks />
+       </View>
 
-        <View style={style.topBar}>
-          <Image 
-            source={require('../../assets/img/crunchyroll_logo.png')}
-            style={style.logo} 
-            resizeMode="contain"
-          ></Image>
-          <TouchableOpacity>
-            <Ionicons name="search" style={style.searchButton}/>
-          </TouchableOpacity>
-        </View>
-
-        <Image
-          source={require('../../assets/img/mushoku-tensei-jobless-reincarnation.png')}
-          resizeMode="cover" 
-          style={style.imageBackgroundAR}
-          />
-
-        <View style={style.animeRecomendation}>
-          
-            <View style={style.descriptionAnimeRecomendation}>
-              <Text style={style.darAnimeTitle}>Mushoku Tensei: Jobless Reincarnation</Text>
-              <Image
-                source={require('../../assets/img/a16.png')}
-                resizeMode="cover" 
-                style={style.darAgeRate}
-              />
-              <Text style={style.darAnimeDescription}>
-              Follows the story of a 34-year-old Japanese man who dies in a car 
-              accident and is reincarnated as a baby named Rudeus Greyrat in a 
-              new fantasy world filled with magic.
-              </Text>
-              <TouchableOpacity style={style.darWatchNow}>
-                <Ionicons name="play-outline" style={style.darWatchNowIcon}/>
-                <Text style={style.darWatchNowText}>WATCH NOW</Text>
-              </TouchableOpacity>
-              <Text style={style.darWatchNowAgeVerify}>
-                <Ionicons name="information-circle-outline" style={style.darWatchNowAgeVerifyIcon}/>
-                Check the Indicative Rating
-              </Text>
-            </View>
-          
-        </View>
-
-        <View style={style.topPicksForYou}>
-          <Text style={globalStyle.text}>Teste</Text>
-        </View>
-
-
-    </View>
+     </ScrollView></>
   );
 }
 
 const style = StyleSheet.create({
   container:{
+    flexDirection: 'column',
     flex: 1,
   },
   topBar:{
@@ -73,6 +93,9 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     padding: 12,
     zIndex: 9999,
+    position: 'absolute',
+    top: 0,
+    flex: 1,
   },
   logo:{
     width: 160, 
@@ -84,72 +107,19 @@ const style = StyleSheet.create({
     padding: 6,
   },
   animeRecomendation:{
-    flex: 1,
+    flexDirection: 'column'
   },
   imageBackgroundAR:{
     position: 'absolute',
     width: '100%', 
-    height: 350,
+    height: 600,
     top: 60,
-  },
-  descriptionAnimeRecomendation:{
-    marginTop: 200,
-    padding: 8,
-  },
-  darAnimeTitle:{
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    marginBottom: 8,
-  },
-  darAnimeDescription:{
-    fontSize: 12,
-    color: 'white',
-    marginBottom: 8,
-  },
-  darAgeRate:{
-    height: 20,
-    width: 20,
-    marginBottom: 8,
-  },
-  darWatchNow:{
-    backgroundColor: '#f47521',
-    width: 160,
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    marginBottom: 8,    
-  },
-  darWatchNowText:{
-    color: '#23252b',
-    fontSize: 14,
-    fontWeight: 'bold',
-    paddingTop: 8,
-    paddingRight: 16,
-  },
-  darWatchNowIcon:{
-    color: '#23252b',
-    fontSize: 28,
-    paddingLeft: 8,
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
-  darWatchNowAgeVerify:{
-    width: '100%',
-    backgroundColor: '#23252b',
-    textAlign: 'center',
-    padding: 16,
-    color: '#fff'
-  },
-  darWatchNowAgeVerifyIcon:{
-    color: 'white',
-    fontSize: 24,
-    marginRight: 10,
   },
 
   //Top picks
   topPicksForYou:{
-    height: 100,
-    flex: 1,
+    flex: 2,
+    minHeight: 340,
+    // backgroundColor: 'red'
   }
 })
