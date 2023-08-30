@@ -4,14 +4,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import TopPicks from '../../components/TopPicks';
 import AnimeRecomendation from '../../components/AnimeRecomendation';
-
-// const animes = [
-//   {
-//       id: 1,
-//       name: "",
-//       type: "",
-//   },
-// ]
+import KeepWatching from '../../components/KeepWatching';
+import YourWatchlist from '../../components/YourWatchlist';
+import MostPopular from '../../components/MostPopular';
 
 class ImageLoader extends Component {
   state = {
@@ -76,6 +71,18 @@ export default function Home() {
          <TopPicks />
        </View>
 
+       <View style={style.keepWatching}>
+         <KeepWatching />
+       </View>
+
+       <View style={style.yourWatchlist}>
+         <YourWatchlist />
+       </View>
+
+       <View style={style.mostPopular}>
+         <MostPopular />
+       </View>
+
      </ScrollView></>
   );
 }
@@ -115,11 +122,24 @@ const style = StyleSheet.create({
     height: 600,
     top: 60,
   },
-
-  //Top picks
   topPicksForYou:{
     flex: 2,
     minHeight: 340,
-    // backgroundColor: 'red'
+  },
+  keepWatching:{
+    flex: 3,
+    minHeight: 340,
+    marginTop: -140,
+  },
+  yourWatchlist:{
+    flex: 4,
+    minHeight: 340,
+    marginTop: -140,
+  },
+  mostPopular:{
+    flex: 5,
+    minHeight: 340,
+    marginTop: -140,
   }
+
 })
