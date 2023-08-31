@@ -5,9 +5,9 @@ const globalStyle = require("../../assets/js/globalStyle.js");
 
 
 export default function MyList() {
- return (
+  return (
     <View style={globalStyle.container}>
-        <Text style={globalStyle.text}>My list</Text>
+      <Text style={globalStyle.text}>My list</Text>
     </View>
   );
 }
