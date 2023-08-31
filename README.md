@@ -6,7 +6,6 @@ Este projeto é um clone do aplicativo da Crunchyroll para smartphones, desenvol
 
 - [Visão Geral](#visão-geral)
 - [Instalação](#instalação)
-- [Contribuição](#contribuição)
 - [Licença](#licença)
 
 ## Visão Geral
@@ -44,29 +43,25 @@ Certifique-se de que você tenha as seguintes ferramentas instaladas em sua máq
 
 ### Passo 1: Clone o repositório
 
-    ```bash
     git clone https://github.com/jhonatarios/CrunchyrollApp
     cd CrunchyrollApp
-    ```
 
 ### Passo 2: Instale as dependências
 
-    ```bash
     npm install
-    ```
+
 ### Passo 3: Configuração do ambiente
 
 Certifique-se de ter um emulador Android/iOS instalado ou o aplicativo Expo Go instalado em um dispositivo físico. Você pode baixar o Expo Go na Google Play Store ou na Apple App Store.
 
 ### Passo 4: Inicie o aplicativo
 
-    ´´´bash
     expo start
-    ´´´
+
 Isso abrirá o Expo Developer Tools em seu navegador. Você terá a opção de executar o aplicativo em um emulador ou em um dispositivo físico.
 
-    Para executar o aplicativo em um emulador Android/iOS, clique no link apropriado na página do Expo Developer Tools.
-    Para executar o aplicativo em um dispositivo físico, abra o aplicativo Expo Go em seu dispositivo e escaneie o QR code exibido na página do Expo Developer Tools.
+- Para executar o aplicativo em um emulador Android/iOS, clique no link apropriado na página do Expo Developer Tools.
+- Para executar o aplicativo em um dispositivo físico, abra o aplicativo Expo Go em seu dispositivo e escaneie o QR code exibido na página do Expo Developer Tools.
 
 O aplicativo CrunchyrollApp agora deverá ser aberto no emulador/dispositivo.
 
